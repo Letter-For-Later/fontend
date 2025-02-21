@@ -15,17 +15,31 @@
       <div
         class="w-full h-full border-t border-l border-r border-lovely-red rounded-tl-3xl rounded-tr-3xl"
       >
-        <div class="w-full h-5/6 flex flex-col items-center justify-center space-y-6">
+        <div
+          v-if="isLogin"
+          class="w-full h-5/6 flex flex-col items-center justify-center space-y-6"
+        >
           <button
-            class="flex justify-center items-center gap-x-2 bg-kakao-yellow w-5/6 py-2 rounded-full cursor-pointer"
+            class="font-pretendard bg-deep-black border border-for-white w-5/6 h-10 py-2 px-8 rounded-full cursor-pointer"
             @click="goWriteLetterPage"
           >
-            <img src="/assets/images/mo_kakao_icon.png" alt="카카오 아이콘" />
-            <span class="font-pretendard font-bold text-kakao-brown text-sm lg:text-base"
-              >카카오로 간편하게 시작하기</span
+            <span class="font-pretendard font-bold text-for-white text-sm lg:text-base"
+              >나만의 편지 적어보기
+            </span>
+          </button>
+          <button
+            class="border border-transparent bg-sweet-red w-5/6 h-10 py-2 px-8 rounded-full cursor-pointer"
+          >
+            <span class="font-pretendard font-bold text-for-white text-sm lg:text-base"
+              >편지함 열어보기</span
             >
           </button>
-          <button class="bg-sweet-red w-5/6 py-2 px-8 rounded-full cursor-pointer">
+        </div>
+        <div v-else class="w-full h-5/6 flex flex-col items-center justify-center space-y-6">
+          <KakaoLogin />
+          <button
+            class="border border-transparent bg-sweet-red w-5/6 h-10 py-2 px-8 rounded-full cursor-pointer"
+          >
             <span class="font-pretendard font-bold text-for-white text-sm lg:text-base"
               >편지함 열어보기</span
             >
@@ -39,6 +53,8 @@
 <script setup lang="ts">
 const router = useRouter()
 const goWriteLetterPage = () => router.push('/writeLetter')
+// const isLogin = ref(false)
+const isLogin = ref(true)
 </script>
 
 <style scoped></style>

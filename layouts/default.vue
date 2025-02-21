@@ -1,8 +1,6 @@
 <template>
   <div class="bg-deep-black w-full h-screen flex justify-center items-center">
-    <div
-      class="w-full text-for-white bg-transparent h-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl shadow-lg"
-    >
+    <div class="w-full text-for-white bg-transparent h-full max-w-md lg:max-w-xl shadow-lg">
       <slot />
     </div>
   </div>
