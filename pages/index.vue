@@ -36,9 +36,9 @@
           </button>
         </div>
         <div v-else class="w-full h-5/6 flex flex-col items-center justify-center space-y-6">
-          <KakaoLogin />
+          <KakaoLoginButton />
           <button
-            class="border border-transparent bg-sweet-red w-5/6 h-10 py-2 px-8 rounded-full cursor-pointer"
+            class="invisible border border-transparent bg-sweet-red w-5/6 h-10 py-2 px-8 rounded-full cursor-pointer"
           >
             <span class="font-pretendard font-bold text-for-white text-sm lg:text-base"
               >편지함 열어보기</span
@@ -51,8 +51,7 @@
 </template>
 
 <script setup lang="ts">
-const router = useRouter()
-const goWriteLetterPage = () => router.push('/writeLetter')
+const goWriteLetterPage = () => navigateTo('/writeLetter')
 // const isLogin = ref(false)
 const isLogin = ref(true)
 </script>
