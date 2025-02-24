@@ -6,37 +6,53 @@
     </header>
     <form class="w-full h-full overflow-hidden flex flex-col px-6">
       <div class="flex-grow flex flex-col items-center justify-center">
-        <div class="flex flex-col items-center relative w-full my-6">
-          <label for="phoneNumber" class="cursor-pointer text-xl font-bold"
-            >누구에게 전하고 싶나요?
-          </label>
-          <input
-            id="phoneNumber"
-            v-model="phoneNumber"
-            type="text"
-            class="cursor-pointer w-full h-10 focus:outline-none border border-for-white rounded-lg p-4 mt-4 mb-2"
-            placeholder="01012345678"
-          />
-          <div class="self-end text-sm">*연락처는 숫자만 입력해주세요.</div>
+        <div class="flex flex-col items-center relative w-full my-3">
+          <div class="text-xl font-bold">누구에게 전하고 싶나요?</div>
+          <div class="flex flex-col w-full">
+            <input
+              id="receiver"
+              v-model="receiver"
+              type="text"
+              class="cursor-pointer w-full h-10 focus:outline-none border border-for-white rounded-lg p-4 mt-4 mb-2"
+              placeholder="홍길동"
+            />
+            <label for="receiver" class="cursor-pointer self-end text-sm"
+              >*받는 분의 이름을 입력해 주세요.</label
+            >
+          </div>
+          <div class="flex flex-col w-full">
+            <input
+              id="phoneNumber"
+              v-model="phoneNumber"
+              type="text"
+              class="cursor-pointer w-full h-10 focus:outline-none border border-for-white rounded-lg p-4 mt-4 mb-2"
+              placeholder="01012345678"
+            />
+            <label for="phoneNumber" class="cursor-pointer self-end text-sm"
+              >*연락처는 숫자만 입력해주세요.</label
+            >
+          </div>
         </div>
-        <div class="flex flex-col items-center relative w-full my-6">
+        <div class="flex flex-col items-center relative w-full my-3">
           <label for="deliveryDate" class="cursor-pointer text-xl font-bold"
             >언제 편지를 전해드릴까요?
           </label>
-          <input
-            id="deliveryDate"
+          <VueDatePicker
             v-model="deliveryDate"
-            type="text"
-            class="cursor-pointer w-full h-10 focus:outline-none border border-for-white rounded-lg p-4 mt-4 mb-2"
-            placeholder="YYYY.MM.DD"
+            :format-locale="ko"
+            :dark="true"
+            :enable-time-picker="false"
+            :disabled-dates="disabledDates"
+            auto-apply
+            placeholder="MM/DD/YYYY"
           />
           <div class="self-end text-sm">*당일 예약은 어렵습니다.</div>
         </div>
-        <div class="flex flex-col items-center relative w-full my-6">
+        <div class="flex flex-col items-center relative w-full my-3">
           <div class="cursor-pointer text-xl font-bold">어떤 시간대에 편지를 전해드릴까요?</div>
           <div class="w-full flex items-center justify-between mt-4 mb-2">
             <label
-              class="border border-for-white rounded-lg py-4 w-1/4 text-center relative cursor-pointer"
+              class="border border-for-white rounded-lg py-2 w-1/4 text-center relative cursor-pointer"
               :class="{ 'bg-sweet-red border-sweet-red': deliveryTime === 'morning' }"
             >
               <input
@@ -49,7 +65,7 @@
               아침
             </label>
             <label
-              class="border border-for-white rounded-lg py-4 w-1/4 text-center relative cursor-pointer"
+              class="border border-for-white rounded-lg py-2 w-1/4 text-center relative cursor-pointer"
               :class="{ 'bg-sweet-red border-sweet-red': deliveryTime === 'noon' }"
             >
               <input
@@ -62,7 +78,7 @@
               점심
             </label>
             <label
-              class="border border-for-white rounded-lg py-4 w-1/4 text-center relative cursor-pointer"
+              class="border border-for-white rounded-lg py-2 w-1/4 text-center relative cursor-pointer"
               :class="{ 'bg-sweet-red border-sweet-red': deliveryTime === 'evening' }"
             >
               <input
@@ -103,13 +119,42 @@
 </template>
 
 <script setup lang="ts">
+import VueDatePicker from '@vuepic/vue-datepicker'
+import { ko } from 'date-fns/locale'
+
 const sendLetter = () => {
   alert('편지를 예약했습니다.')
   navigateTo('/')
 }
+const receiver = ref(null)
 const phoneNumber = ref(null)
-const deliveryDate = ref(null)
+const deliveryDate = ref(new Date())
 const deliveryTime = ref('')
+
+const disabledDates = computed(() => {
+  const today = new Date()
+  today.setHours(23, 59, 59, 999) // 오늘의 마지막 순간까지 포함하도록 설정
+  return (date: Date) => date <= today
+})
 </script>
 
-<style scoped></style>
+<style scoped>
+.dp__theme_dark {
+  --dp-background-color: #0b0b0b;
+  --dp-text-color: #ffffff;
+  --dp-border-color: #ffffff;
+  --dp-menu-border-color: #2d2d2d;
+  --dp-border-color-focus: #aaaeb7;
+  --dp-disabled-color: #737373;
+  --dp-disabled-color-text: #d0d0d0;
+  --dp-scroll-bar-background: #212121;
+  --dp-scroll-bar-color: #484848;
+  --dp-icon-color: #959595;
+  --dp-tooltip-color: #3e3e3e;
+  --dp-range-between-dates-background-color: var(--dp-hover-color, #484848);
+  --dp-range-between-dates-text-color: var(--dp-hover-text-color, #fff);
+  --dp-range-between-border-color: var(--dp-hover-color, #fff);
+  --dp-border-radius: 8px;
+  margin: 16px auto 8px;
+}
+</style>

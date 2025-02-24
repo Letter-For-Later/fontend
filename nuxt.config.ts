@@ -18,4 +18,8 @@ export default defineNuxtConfig({
       kakaoRedirectUrl: process.env.KAKAO_REDIRECT_URL,
     },
   },
+  plugins: ['~/plugins/vue-datepicker.ts'],
+  build: {
+    transpile: ['@vuepic/vue-datepicker'],
+  },
 })
