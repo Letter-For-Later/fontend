@@ -128,7 +128,7 @@ const sendLetter = () => {
 }
 const receiver = ref(null)
 const phoneNumber = ref(null)
-const deliveryDate = ref(new Date())
+const deliveryDate = ref(null)
 const deliveryTime = ref('')
 
 const disabledDates = computed(() => {
@@ -144,7 +144,8 @@ const disabledDates = computed(() => {
   --dp-text-color: #ffffff;
   --dp-border-color: #ffffff;
   --dp-menu-border-color: #2d2d2d;
-  --dp-border-color-focus: #aaaeb7;
+  --dp-border-color-focus: #ffffff;
+  --dp-border-color-hover: #ffffff;
   --dp-disabled-color: #737373;
   --dp-disabled-color-text: #d0d0d0;
   --dp-scroll-bar-background: #212121;
