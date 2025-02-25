@@ -123,7 +123,7 @@ import VueDatePicker from '@vuepic/vue-datepicker'
 import { ko } from 'date-fns/locale'
 
 const sendLetter = () => {
-  alert('편지를 예약했습니다.')
+  alert('편지를 예약했습니다!')
   navigateTo('/')
 }
 const receiver = ref(null)
