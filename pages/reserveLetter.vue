@@ -91,7 +91,7 @@
               저녁
             </label>
           </div>
-          <div class="self-end text-sm">*아침 9시, 점심 1시, 저녁 6시에 발송됩니다</div>
+          <div class="self-end text-sm">*아침 9시, 점심 1시, 저녁 6시에 발송됩니다.</div>
         </div>
       </div>
 
