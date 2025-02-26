@@ -6,7 +6,7 @@
       <CancelButton />
     </header>
     <div class="flex-grow overflow-hidden flex flex-col px-6">
-      <div class="h-full py-12 px-4 flex flex-col items-center gap-y-8">
+      <div class="h-full py-12 px-4 flex flex-col items-center gap-y-8 overflow-scroll">
         <NuxtLink
           v-for="{ id, receiverName, deliveryDate, deliveryTime } in list"
           :key="id"

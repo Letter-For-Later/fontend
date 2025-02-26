@@ -19,14 +19,14 @@
   --font-roboto: 'Roboto';
   --font-ridibatang: 'ridibatang';
 
-  --animate-slideLeftFirst: slideLeft 1s ease-in-out forwards 0.1s;
-  --animate-slideLeftSecond: slideLeft 1s ease-in-out forwards 0.2s;
-  --animate-slideLeftThird: slideLeft 1s ease-in-out forwards 0.3s;
-  --animate-slideLeftFourth: slideLeft 1s ease-in-out forwards 0.4s;
+  --animate-slideLeftFirst: slideLeft 0.5s ease-in-out forwards 0.1s;
+  --animate-slideLeftSecond: slideLeft 0.5s ease-in-out forwards 0.2s;
+  --animate-slideLeftThird: slideLeft 0.5s ease-in-out forwards 0.3s;
+  --animate-slideLeftFourth: slideLeft 0.5s ease-in-out forwards 0.4s;
 
-  --animate-slideUpFirst: slideUp 1s linear forwards 0.5s;
-  --animate-slideUpSecond: slideUp 1s linear forwards 1s;
-  --animate-slideUpThird: slideUp 1s linear forwards 1.5s;
+  --animate-slideUpFirst: slideUp 0.5s linear forwards 0.5s;
+  --animate-slideUpSecond: slideUp 0.5s linear forwards 1s;
+  --animate-slideUpThird: slideUp 0.5s linear forwards 1.5s;
 
   @keyframes slideLeft {
     0% {

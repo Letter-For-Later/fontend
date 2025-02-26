@@ -6,11 +6,11 @@
       <CancelButton />
     </header>
     <div class="flex-grow overflow-hidden flex flex-col px-6">
-      <div class="h-full py-12 px-4 flex flex-col items-center gap-y-8">
+      <div class="h-full py-12 px-4 flex flex-col items-center gap-y-8 overflow-scroll">
         <NuxtLink
           v-for="{ id, receiverName, deliveryDate, deliveryTime } in list"
           :key="id"
-          :to="`/myLetterBox/reservedLetterList/${id}`"
+          :to="`/myLetterBox/receivedLetterList/${id}`"
         >
           <p class="font-pretendard font-semibold underline text-base">
             {{ deliveryDate }} {{ deliveryTime }} {{ receiverName }}님께 받은 편지 ✉️
