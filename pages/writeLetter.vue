@@ -24,7 +24,7 @@
         placeholder="너무 서두르지 않아도 돼요. 당신의 시간에 맞춰 가세요."
         class="font-ridibatang w-full flex-grow resize-none overflow-auto text-sm placeholder:text-sm focus:outline-none animate-slideUpSecond opacity-0"
       />
-      <div class="w-full flex flex-col items-center space-y-4">
+      <div class="w-full flex flex-col items-center gap-y-4">
         <button
           type="button"
           class="font-pretendard bg-deep-black border border-for-white w-full h-10 py-2 px-8 rounded-full cursor-pointer hover:bg-lovely-red hover:border-lovely-red transition"

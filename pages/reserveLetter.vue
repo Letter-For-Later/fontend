@@ -101,7 +101,7 @@
         </div>
       </div>
 
-      <div class="w-full flex flex-col items-center space-y-4">
+      <div class="w-full flex flex-col items-center gap-y-6">
         <button
           type="button"
           class="font-pretendard bg-deep-black border border-for-white w-full h-10 py-2 px-8 rounded-full cursor-pointer hover:bg-lovely-red hover:border-lovely-red transition"

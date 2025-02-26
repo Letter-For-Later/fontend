@@ -19,10 +19,7 @@
       <div
         class="w-full h-full border-t border-l border-r border-lovely-red rounded-tl-3xl rounded-tr-3xl"
       >
-        <div
-          v-if="isLogin"
-          class="w-full h-5/6 flex flex-col items-center justify-center space-y-6"
-        >
+        <div v-if="isLogin" class="w-full h-5/6 flex flex-col items-center justify-center gap-y-4">
           <button
             class="font-pretendard bg-deep-black border border-for-white w-5/6 h-10 py-2 px-8 rounded-full cursor-pointer"
             @click="goWriteLetterPage"
@@ -42,7 +39,7 @@
             </button>
           </NuxtLink>
         </div>
-        <div v-else class="w-full h-5/6 flex flex-col items-center justify-center space-y-6">
+        <div v-else class="w-full h-5/6 flex flex-col items-center justify-center gap-y-4">
           <KakaoLoginButton />
           <button
             class="invisible border border-transparent bg-sweet-red w-5/6 h-10 py-2 px-8 rounded-full cursor-pointer"
