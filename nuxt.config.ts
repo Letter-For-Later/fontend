@@ -17,6 +17,7 @@ export default defineNuxtConfig({
       kakaoRestApiKey: process.env.KAKAO_REST_API_KEY,
       kakaoRedirectUrl: process.env.KAKAO_REDIRECT_URL,
       baseUrl: process.env.BASE_URL,
+      perplexityApiKey: process.env.PERPLEXITY_API_KEY,
     },
   },
   plugins: ['~/plugins/vue-datepicker.ts'],
