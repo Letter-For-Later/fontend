@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'ridibatang'; /* 폰트 이름을 설정합니다 */
+  src: url('@/assets/fonts/ridibatang.otf') format('opentype'); /* 폰트 파일 위치와 포맷을 지정합니다 */
+  font-weight: normal;
+  font-style: normal;
+}
+
 @import 'tailwindcss';
 @theme {
   --color-lovely-red: #f50000;
@@ -10,4 +17,36 @@
   --color-kakao-brown: #2c0000;
   --font-pretendard: 'Pretendard';
   --font-roboto: 'Roboto';
+  --font-ridibatang: 'ridibatang';
+
+  --animate-slideLeftFirst: slideLeft 1s ease-in-out forwards 0.1s;
+  --animate-slideLeftSecond: slideLeft 1s ease-in-out forwards 0.2s;
+  --animate-slideLeftThird: slideLeft 1s ease-in-out forwards 0.3s;
+  --animate-slideLeftFourth: slideLeft 1s ease-in-out forwards 0.4s;
+
+  --animate-slideUpFirst: slideUp 1s linear forwards 0.5s;
+  --animate-slideUpSecond: slideUp 1s linear forwards 1s;
+  --animate-slideUpThird: slideUp 1s linear forwards 1.5s;
+
+  @keyframes slideLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+
+  @keyframes slideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
 }

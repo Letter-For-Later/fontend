@@ -6,7 +6,9 @@
     </header>
     <form class="w-full h-full overflow-hidden flex flex-col px-6">
       <div class="flex-grow flex flex-col items-center justify-center">
-        <div class="flex flex-col items-center relative w-full my-3">
+        <div
+          class="flex flex-col items-center relative w-full my-3 animate-slideLeftFirst opacity-0"
+        >
           <div class="text-xl font-bold">누구에게 전하고 싶나요?</div>
           <div class="flex flex-col w-full">
             <input
@@ -33,7 +35,9 @@
             >
           </div>
         </div>
-        <div class="flex flex-col items-center relative w-full my-3">
+        <div
+          class="flex flex-col items-center relative w-full my-3 animate-slideLeftSecond opacity-0"
+        >
           <label for="deliveryDate" class="cursor-pointer text-xl font-bold"
             >언제 편지를 전해드릴까요?
           </label>
@@ -48,7 +52,9 @@
           />
           <div class="self-end text-sm">*당일 예약은 어렵습니다.</div>
         </div>
-        <div class="flex flex-col items-center relative w-full my-3">
+        <div
+          class="flex flex-col items-center relative w-full my-3 animate-slideLeftThird opacity-0"
+        >
           <div class="cursor-pointer text-xl font-bold">어떤 시간대에 편지를 전해드릴까요?</div>
           <div class="w-full flex items-center justify-between mt-4 mb-2">
             <label
