@@ -48,6 +48,10 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  middleware: ['login-only'],
+})
+
 const sender = ref('')
 const contents = ref('')
 const goReserveLetterPage = () => {

@@ -5,14 +5,13 @@
 </template>
 
 <script setup lang="ts">
-// 현재 URL에서 인가 코드 가져오기
 const route = useRoute()
-// const router = useRouter()
-const code = route.query.code as string // 카카오에서 보낸 인가 코드
+const router = useRouter()
+const code = route.query.code as string
 const config = useRuntimeConfig()
 const BASE_URL = config.public.baseUrl
-// const KAKAO_REDIRECT_URL = config.public.kakaoRedirectUrl
-
+const authStore = useAuthStore()
+// const { isLogin } = storeToRefs(authStore)
 const getTokenWithKakao = async (code: string) => {
   try {
     const response = await fetch(`${BASE_URL}/api/users/login/oauth/kakao?code=${code}`, {
@@ -22,7 +21,11 @@ const getTokenWithKakao = async (code: string) => {
       },
     })
     console.log('response: ', response)
-    // router.replace('/')
+    if (response.status === 200) {
+      const result = await response.json()
+      authStore.setUser(result)
+    }
+    router.replace('/')
   } catch (error) {
     console.error(error)
   }

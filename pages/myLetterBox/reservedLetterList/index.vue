@@ -32,6 +32,10 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  middleware: ['login-only'],
+})
+
 const list = [
   {
     id: '111',

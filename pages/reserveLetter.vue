@@ -122,6 +122,10 @@
 import VueDatePicker from '@vuepic/vue-datepicker'
 import { ko } from 'date-fns/locale'
 
+definePageMeta({
+  middleware: ['login-only'],
+})
+
 const sendLetter = () => {
   alert('편지를 예약했습니다!')
   navigateTo('/')
