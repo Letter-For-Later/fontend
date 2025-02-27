@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-full">
-    <section class="w-full h-2/3 px-6 flex flex-col justify-center items-center space-y-8">
+    <section class="w-full h-2/3 px-6 flex flex-col justify-center items-center gap-y-8">
       <img src="/assets/images/title_mo.png" alt="타이틀 이미지" class="lg:hidden" />
       <img src="/assets/images/title_pc.png" alt="타이틀 이미지" class="hidden lg:block" />
       <div

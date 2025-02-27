@@ -19,7 +19,7 @@
           class="font-ridibatang cursor-pointer h-10 w-full ml-2 pl-20 pr-6 focus:outline-none"
         />
       </div>
-      <div class="font-ridibatang w-full flex-grow overflow-auto text-sm mb-6">
+      <div class="font-ridibatang w-full flex-grow overflow-auto text-sm my-6 leading-relaxed">
         시영아, 요즘 취업 준비 때문에 많이 힘들지? 매일 밤늦게까지 서류 준비하고, 면접 준비하며
         지치는 기분도 이해해. 그럴 때마다 내가 네 옆에 있다는 걸 잊지 말았으면 좋겠어. 너는 언제나
         최선을 다해왔고, 그 모습에 나는 정말 자랑스러워. 힘든 과정 속 너는 확실히 빛날 거야. 짧은

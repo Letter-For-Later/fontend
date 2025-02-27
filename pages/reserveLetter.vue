@@ -7,7 +7,7 @@
     <form class="w-full h-full overflow-hidden flex flex-col px-6">
       <div class="flex-grow flex flex-col items-center justify-center">
         <div class="flex flex-col items-center relative w-full my-3">
-          <div class="text-xl font-bold">누구에게 전하고 싶나요?</div>
+          <div class="text-lg font-bold">누구에게 전하고 싶나요?</div>
           <div class="flex flex-col w-full">
             <input
               id="receiver"
@@ -16,7 +16,7 @@
               class="cursor-pointer w-full h-10 focus:outline-none border border-for-white rounded-lg p-4 mt-4 mb-2"
               placeholder="홍길동"
             />
-            <label for="receiver" class="cursor-pointer self-end text-sm"
+            <label for="receiver" class="cursor-pointer self-end text-xs"
               >*받는 분의 이름을 입력해 주세요.</label
             >
           </div>
@@ -28,13 +28,13 @@
               class="cursor-pointer w-full h-10 focus:outline-none border border-for-white rounded-lg p-4 mt-4 mb-2"
               placeholder="01012345678"
             />
-            <label for="phoneNumber" class="cursor-pointer self-end text-sm"
+            <label for="phoneNumber" class="cursor-pointer self-end text-xs"
               >*연락처는 숫자만 입력해주세요.</label
             >
           </div>
         </div>
         <div class="flex flex-col items-center relative w-full my-3">
-          <label for="deliveryDate" class="cursor-pointer text-xl font-bold"
+          <label for="deliveryDate" class="cursor-pointer text-lg font-bold"
             >언제 편지를 전해드릴까요?
           </label>
           <VueDatePicker
@@ -46,10 +46,10 @@
             auto-apply
             placeholder="MM/DD/YYYY"
           />
-          <div class="self-end text-sm">*당일 예약은 어렵습니다.</div>
+          <div class="self-end text-xs">*당일 예약은 어렵습니다.</div>
         </div>
         <div class="flex flex-col items-center relative w-full my-3">
-          <div class="cursor-pointer text-xl font-bold">어떤 시간대에 편지를 전해드릴까요?</div>
+          <div class="cursor-pointer text-lg font-bold">어떤 시간대에 편지를 전해드릴까요?</div>
           <div class="w-full flex items-center justify-between mt-4 mb-2">
             <label
               class="border border-for-white rounded-lg py-2 w-1/4 text-center relative cursor-pointer"
@@ -91,7 +91,7 @@
               저녁
             </label>
           </div>
-          <div class="self-end text-sm">*아침 9시, 점심 1시, 저녁 6시에 발송됩니다.</div>
+          <div class="self-end text-xs">*아침 9시, 점심 1시, 저녁 6시에 발송됩니다.</div>
         </div>
       </div>
 

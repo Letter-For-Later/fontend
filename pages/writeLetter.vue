@@ -4,7 +4,7 @@
       <BackButton />
       <CancelButton />
     </header>
-    <form class="flex-grow overflow-hidden flex flex-col px-6 space-y-4">
+    <form class="flex-grow overflow-hidden flex flex-col px-6">
       <div class="flex items-center relative">
         <label for="sender" class="cursor-pointer absolute inset-y-0 left-0 flex items-center">
           <div class="flex items-center gap-x-3">
@@ -22,7 +22,7 @@
       <textarea
         v-model="contents"
         placeholder="너무 서두르지 않아도 돼요. 당신의 시간에 맞춰 가세요."
-        class="font-ridibatang w-full flex-grow resize-none overflow-auto text-sm placeholder:text-sm focus:outline-none"
+        class="font-ridibatang w-full flex-grow resize-none overflow-auto text-sm placeholder:text-sm focus:outline-none my-6 leading-relaxed"
       />
       <div class="w-full flex flex-col items-center gap-y-4">
         <button
