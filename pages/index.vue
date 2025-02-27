@@ -57,7 +57,7 @@
 <script setup lang="ts">
 const goWriteLetterPage = () => navigateTo('/writeLetter')
 // const isLogin = ref(false)
-const isLogin = ref(true)
+const isLogin = ref(false)
 </script>
 
 <style scoped></style>
