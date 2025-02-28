@@ -11,6 +11,8 @@ const code = route.query.code as string
 const config = useRuntimeConfig()
 const BASE_URL = config.public.baseUrl
 const authStore = useAuthStore()
+const { user } = storeToRefs(authStore)
+const accessTokenCookie = useCookie('accessToken')
 // const { isLogin } = storeToRefs(authStore)
 const getTokenWithKakao = async (code: string) => {
   try {
@@ -20,10 +22,13 @@ const getTokenWithKakao = async (code: string) => {
         'Content-Type': 'application/json',
       },
     })
-    console.log('response: ', response)
+
     if (response.status === 200) {
       const result = await response.json()
       authStore.setUser(result)
+      accessTokenCookie.value = user.value?.token.accessToken
+    } else {
+      alert('카카오 소셜 로그인이 실패하였습니다!')
     }
     router.replace('/')
   } catch (error) {

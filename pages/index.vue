@@ -19,7 +19,10 @@
       <div
         class="w-full h-full border-t border-l border-r border-lovely-red rounded-tl-3xl rounded-tr-3xl"
       >
-        <div v-if="isLogin" class="w-full h-5/6 flex flex-col items-center justify-center gap-y-4">
+        <div
+          v-if="hasCookie"
+          class="w-full h-5/6 flex flex-col items-center justify-center gap-y-4"
+        >
           <button
             class="font-pretendard bg-deep-black border border-for-white w-5/6 h-10 py-2 px-8 rounded-full cursor-pointer"
             @click="goWriteLetterPage"
@@ -56,8 +59,7 @@
 
 <script setup lang="ts">
 const goWriteLetterPage = () => navigateTo('/writeLetter')
-const authStore = useAuthStore()
-const { isLogin } = storeToRefs(authStore)
+const hasCookie = useCookie('accessToken').value
 </script>
 
 <style scoped></style>

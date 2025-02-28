@@ -70,28 +70,10 @@
 definePageMeta({
   middleware: ['login-only'],
 })
-const config = useRuntimeConfig()
-const BASE_URL = config.public.baseUrl
-const authStore = useAuthStore()
-const { user } = storeToRefs(authStore)
-const getLettersSummary = async () => {
-  try {
-    const response = await fetch(`${BASE_URL}/api/letters/summary`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.value?.token.accessToken}`,
-      },
-    })
-    const result = await response.json()
-    console.log(result)
-  } catch (error) {
-    console.error(error)
-  }
-}
-onMounted(() => {
-  getLettersSummary()
-})
+
+const result = await useApi('api/letters/summary', 'GET')
+console.log('new result: ', result)
+
 const list = [
   {
     name: '예약 편지함',
