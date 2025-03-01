@@ -51,6 +51,7 @@ const contents = ref('')
 const goReserveLetterPage = () => {
   navigateTo('/reserveLetter')
 }
+console.log('test')
 </script>
 
 <style scoped></style>
