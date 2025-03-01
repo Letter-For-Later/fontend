@@ -13,7 +13,7 @@
             <img src="/assets/images/mo_right_icon.png" alt="이동 아이콘" />
           </div>
           <div class="text-gray-400">
-            <!-- 대기중인 편지 {{ letter ? letter.reservedCount : 0 }}건이 있습니다. -->
+            대기중인 편지 {{ letter ? letter.reservedCount : 0 }}건이 있습니다.
           </div>
         </NuxtLink>
         <NuxtLink to="/myLetterBox/sendedLetterList" class="opacity-0 animate-slideLeftSecond">
@@ -22,7 +22,7 @@
             <img src="/assets/images/mo_right_icon.png" alt="이동 아이콘" />
           </div>
           <div class="text-gray-400">
-            <!-- 발송 완료된 편지 {{ letter ? letter.sentCount : 0 }}건이 있습니다. -->
+            발송 완료된 편지 {{ letter ? letter.sentCount : 0 }}건이 있습니다.
           </div>
         </NuxtLink>
         <NuxtLink to="/myLetterBox/receivedLetterList" class="opacity-0 animate-slideLeftThird">
@@ -31,7 +31,7 @@
             <img src="/assets/images/mo_right_icon.png" alt="이동 아이콘" />
           </div>
           <div class="text-gray-400">
-            <!-- 받은 편지가 {{ letter ? letter.receivedCount : 0 }}건이 있습니다. -->
+            받은 편지가 {{ letter ? letter.receivedCount : 0 }}건이 있습니다.
           </div>
         </NuxtLink>
         <NuxtLink
@@ -44,7 +44,7 @@
             <img src="/assets/images/mo_right_icon.png" alt="이동 아이콘" />
           </div>
           <div class="text-gray-400">
-            <!-- 임시 저장된 편지 {{ letter ? letter.draftCount : 0 }}건이 있습니다. -->
+            임시 저장된 편지 {{ letter ? letter.draftCount : 0 }}건이 있습니다.
           </div>
         </NuxtLink>
       </div>
@@ -66,9 +66,11 @@
 definePageMeta({
   middleware: ['login-only'],
 })
-// const letter = ref()
-const test = useApi('api/letters/summary', 'GET')
-console.log(test)
+const letter = ref()
+useApi('api/letters/summary', 'GET')
+  .then(data => (letter.value = data.result))
+  .catch(() => (letter.value = null))
+// console.log(test)
 // .then(data => (letter.value = data.result))
 // .catch(() => (letter.value = null))
 </script>

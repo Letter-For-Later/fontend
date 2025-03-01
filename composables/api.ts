@@ -3,7 +3,7 @@ export const useApi = async (endPoint: string, method: 'GET' | 'POST' | 'PUT' | 
   const BASE_URL = config.public.baseUrl
 
   try {
-    const response = await fetch(`${BASE_URL}/${endPoint}`, {
+    let response = await fetch(`${BASE_URL}/${endPoint}`, {
       method: method,
       headers: {
         'Content-Type': 'application/json',
@@ -11,16 +11,16 @@ export const useApi = async (endPoint: string, method: 'GET' | 'POST' | 'PUT' | 
       },
     })
 
-    // if (response.status === 401 || response.status === 403) {
-    //   await refreshToken()
-    //   response = await fetch(`${BASE_URL}/${endPoint}`, {
-    //     method: method,
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       Authorization: `Bearer ${useCookie('accessToken').value}`,
-    //     },
-    //   })
-    // }
+    if (response.status === 401 || response.status === 403) {
+      await refreshToken()
+      response = await fetch(`${BASE_URL}/${endPoint}`, {
+        method: method,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${useCookie('accessToken').value}`,
+        },
+      })
+    }
 
     const result = response.ok ? await response.json() : null
     return result

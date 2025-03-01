@@ -54,7 +54,9 @@ definePageMeta({
 
 const sender = ref('')
 const contents = ref('')
+const letterContent = useLetterStore()
 const goReserveLetterPage = () => {
+  letterContent.setLetterContents(sender.value, contents.value)
   navigateTo('/reserveLetter')
 }
 </script>

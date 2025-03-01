@@ -11,7 +11,7 @@
           <div class="flex flex-col w-full">
             <input
               id="receiver"
-              v-model="receiver"
+              v-model="receiverName"
               type="text"
               class="cursor-pointer w-full h-10 focus:outline-none border border-for-white rounded-lg p-4 mt-4 mb-2"
               placeholder="홍길동"
@@ -53,39 +53,39 @@
           <div class="w-full flex items-center justify-between mt-4 mb-2">
             <label
               class="border border-for-white rounded-lg py-2 w-1/4 text-center relative cursor-pointer"
-              :class="{ 'bg-sweet-red border-sweet-red': deliveryTime === 'morning' }"
+              :class="{ 'bg-sweet-red border-sweet-red': deliveryTime === 'MORNING' }"
             >
               <input
                 v-model="deliveryTime"
                 type="radio"
                 name="deliveryTime"
-                value="morning"
+                value="MORNING"
                 class="absolute opacity-0 w-0 h-0 m-0"
               />
               아침
             </label>
             <label
               class="border border-for-white rounded-lg py-2 w-1/4 text-center relative cursor-pointer"
-              :class="{ 'bg-sweet-red border-sweet-red': deliveryTime === 'noon' }"
+              :class="{ 'bg-sweet-red border-sweet-red': deliveryTime === 'LUNCH' }"
             >
               <input
                 v-model="deliveryTime"
                 type="radio"
                 name="deliveryTime"
-                value="noon"
+                value="LUNCH"
                 class="absolute opacity-0 w-0 h-0 m-0"
               />
               점심
             </label>
             <label
               class="border border-for-white rounded-lg py-2 w-1/4 text-center relative cursor-pointer"
-              :class="{ 'bg-sweet-red border-sweet-red': deliveryTime === 'evening' }"
+              :class="{ 'bg-sweet-red border-sweet-red': deliveryTime === 'DINNER' }"
             >
               <input
                 v-model="deliveryTime"
                 type="radio"
                 name="deliveryTime"
-                value="evening"
+                value="DINNER"
                 class="absolute opacity-0 w-0 h-0 m-0"
               />
               저녁
@@ -99,7 +99,7 @@
         <button
           type="button"
           class="font-pretendard bg-deep-black border border-for-white w-full h-10 py-2 px-8 rounded-full cursor-pointer hover:bg-lovely-red hover:border-lovely-red transition"
-          @click="sendLetter"
+          @click="reservateLetter"
         >
           <span class="font-pretendard font-bold text-for-white text-sm lg:text-base"
             >천천히, 시간을 담아 보내기
@@ -126,11 +126,7 @@ definePageMeta({
   middleware: ['login-only'],
 })
 
-const sendLetter = () => {
-  alert('편지를 예약했습니다!')
-  navigateTo('/')
-}
-const receiver = ref(null)
+const receiverName = ref(null)
 const phoneNumber = ref(null)
 const deliveryDate = ref(null)
 const deliveryTime = ref('')
@@ -140,6 +136,60 @@ const disabledDates = computed(() => {
   today.setHours(23, 59, 59, 999) // 오늘의 마지막 순간까지 포함하도록 설정
   return (date: Date) => date <= today
 })
+
+const letterContent = useLetterStore()
+const { letter } = storeToRefs(letterContent)
+function formatKSTDate(dateString: string | null): string | undefined {
+  if (dateString === null) {
+    return
+  }
+
+  // 날짜 문자열을 Date 객체로 변환
+  const date = new Date(dateString)
+
+  // UTC로 날짜 및 시간을 변환 (KST에서 UTC로 -9시간 조정)
+  const utcDate = new Date(date.getTime() + 9 * 60 * 60 * 1000) // 9시간 밀리초로 변환하여 빼기
+
+  // YYYY-MM-DD 형식으로 날짜 포매팅
+  return utcDate.toISOString().slice(0, 10)
+}
+
+const reservateLetter = async () => {
+  const config = useRuntimeConfig()
+  const BASE_URL = config.public.baseUrl
+
+  // 요청 본문 구성
+  const requestBody = JSON.stringify({
+    sender: letter.value?.sender,
+    content: letter.value?.content,
+    receiver: receiverName.value,
+    phoneNumber: phoneNumber.value,
+    reservationDate: formatKSTDate(deliveryDate.value),
+    reservationTime: deliveryTime.value,
+  })
+
+  try {
+    const response = await fetch(`${BASE_URL}/api/letters/reservation`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${useCookie('accessToken').value}`,
+      },
+      body: requestBody,
+    })
+
+    const result = response.ok ? await response.json() : null
+    console.log('결과,,,:', result)
+    if (result.isSuccess) {
+      alert('설정하신 날짜에 편지를 보내드릴게요.')
+      navigateTo('/')
+    } else {
+      alert('편지 예약에 실패하였습니다!')
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
 </script>
 
 <style scoped>

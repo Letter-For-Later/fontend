@@ -8,12 +8,14 @@
     <div class="flex-grow overflow-hidden flex flex-col px-6">
       <div class="h-full py-12 px-4 flex flex-col items-center gap-y-8 overflow-scroll">
         <NuxtLink
-          v-for="{ id, receiverName, deliveryDate, deliveryTime } in list"
-          :key="id"
-          :to="`/myLetterBox/reservedLetterList/${id}`"
+          v-for="{ letterId, date, name, timeStatus } in letterList"
+          :key="letterId"
+          :to="`/myLetterBox/reservedLetterList/${letterId}`"
         >
           <p class="font-pretendard font-semibold underline text-base">
-            {{ deliveryDate }} {{ deliveryTime }} {{ receiverName }}님께 보낼 편지 ✉️
+            {{ date }}
+            {{ timeStatus === 'MORNING' ? '아침' : timeStatus === 'LUNCH' ? '점심' : '저녁' }}
+            {{ name }}님께 보낼 편지 ✉️
           </p>
         </NuxtLink>
       </div>
@@ -36,32 +38,9 @@ definePageMeta({
   middleware: ['login-only'],
 })
 
-const list = [
-  {
-    id: '111',
-    deliveryDate: '2025/02/26',
-    deliveryTime: '아침',
-    receiverName: '시영',
-  },
-  {
-    id: '222',
-    deliveryDate: '2025/02/27',
-    deliveryTime: '점심',
-    receiverName: '고은',
-  },
-  {
-    id: '333',
-    deliveryDate: '2025/02/28',
-    deliveryTime: '저녁',
-    receiverName: '지윤',
-  },
-  {
-    id: '444',
-    deliveryDate: '2025/03/01',
-    deliveryTime: '아침',
-    receiverName: '성훈',
-  },
-]
+const letterList = ref()
+const data = await useApi('api/letters/reserved', 'GET')
+letterList.value = data.result.letters
 </script>
 
 <style scoped></style>
