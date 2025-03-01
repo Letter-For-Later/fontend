@@ -60,6 +60,7 @@
 <script setup lang="ts">
 const goWriteLetterPage = () => navigateTo('/writeLetter')
 const hasCookie = useCookie('accessToken').value
+console.log('has', hasCookie)
 </script>
 
 <style scoped></style>

@@ -3,7 +3,7 @@ export const useApi = async (endPoint: string, method: 'GET' | 'POST' | 'PUT' | 
   const BASE_URL = config.public.baseUrl
 
   try {
-    let response = await fetch(`${BASE_URL}/${endPoint}`, {
+    const response = await fetch(`${BASE_URL}/${endPoint}`, {
       method: method,
       headers: {
         'Content-Type': 'application/json',
@@ -11,16 +11,16 @@ export const useApi = async (endPoint: string, method: 'GET' | 'POST' | 'PUT' | 
       },
     })
 
-    if (response.status === 401 || response.status === 403) {
-      await refreshToken()
-      response = await fetch(`${BASE_URL}/${endPoint}`, {
-        method: method,
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${useCookie('accessToken').value}`,
-        },
-      })
-    }
+    // if (response.status === 401 || response.status === 403) {
+    //   await refreshToken()
+    //   response = await fetch(`${BASE_URL}/${endPoint}`, {
+    //     method: method,
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       Authorization: `Bearer ${useCookie('accessToken').value}`,
+    //     },
+    //   })
+    // }
 
     const result = response.ok ? await response.json() : null
     return result
@@ -29,10 +29,10 @@ export const useApi = async (endPoint: string, method: 'GET' | 'POST' | 'PUT' | 
   }
 }
 
-const refreshToken = async () => {
+export const refreshToken = async () => {
   const config = useRuntimeConfig()
   const BASE_URL = config.public.baseUrl
-  const refreshToken = useCookie('refresh').value
+  const refreshToken = useCookie('refreshToken').value
   const response = await fetch(`${BASE_URL}/api/users/token/refresh?refreshToken=${refreshToken}`, {
     method: 'GET',
     headers: {
